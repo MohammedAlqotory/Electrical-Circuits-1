@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاضرات الـ DC Circuits</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 2.5rem 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .nav-back {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 1.5rem;
+        }
+        h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .lectures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .lecture-card {
+            background: var(--card-bg);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.75rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .lecture-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+        .lec-tag {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .lecture-card h2 {
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+        }
+        .lecture-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="nav-back">← العودة للرئيسية</a>
+    <header>
+        <h1>محاضرات دوائر التيار المستمر (DC Circuits)</h1>
+        <p style="color: var(--text-muted);">اختر المحاضرة للاطلاع على الشرح والمسائل المحلولة</p>
+    </header>
+
+    <div class="lectures-grid">
+        <a href="lecture1.html" class="lecture-card">
+            <div>
+                <span class="lec-tag">Lecture 01 • Chapter 2</span>
+                <h2>Simple Resistive Circuits</h2>
+                <p>مقاومات التوالي والتوازي، مجزئ الجهد والتيار، وتحويلات Star-Delta مع أمثلة محلولة.</p>
+            </div>
+        </a>
+
+        <!-- محاضرات إضافية يمكنك فتحها مستقبلاً -->
+    </div>
+</body>
+</html>
