@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: Simple Resistive Circuits</title>
+    <!-- MathJax for rendering formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --bg-color: #0b1120;
+            --surface-color: #1e293b;
+            --surface-card: #0f172a;
+            --primary: #38bdf8;
+            --secondary: #94a3b8;
+            --text-main: #f1f5f9;
+            --border-color: #334155;
+            --accent: #f59e0b;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .nav-header a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        header.chapter-title {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        header.chapter-title h1 {
+            font-size: 2.25rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        header.chapter-title p {
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+        section {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: #38bdf8;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 0.5rem;
+        }
+        h3 {
+            font-size: 1.25rem;
+            color: var(--text-main);
+            margin: 1.5rem 0 0.75rem 0;
+        }
+        p {
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+        }
+        .diagram-box {
+            background-color: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .diagram-box svg {
+            max-width: 100%;
+            height: auto;
+        }
+        .formula-box {
+            background-color: rgba(56, 189, 248, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .example-box {
+            background-color: #172033;
+            border: 1px solid #3b82f6;
+            border-radius: 10px;
+            padding: 1.75rem;
+            margin: 2rem 0;
+        }
+        .example-title {
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+        }
+        .solution-title {
+            font-weight: bold;
+            color: #4ade80;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="nav-header">
+            <a href="index.html">← Back to DC Lectures</a>
+            <span style="color: var(--secondary);">DC Circuits • Chapter 2</span>
+        </div>
+
+        <header class="chapter-title">
+            <h1>Chapter (2): Simple Resistive Circuits</h1>
+            <p>Series, Parallel, Voltage & Current Division, and Star-Delta Transformations</p>
+        </header>
+
+        <!-- Section 2.1 -->
+        <section>
+            <h2>2.1 Resistors in Series</h2>
+            <p>When resistors are connected in series, they are joined end to end so that the same current flows through each resistor. The total resistance of the circuit is equal to the sum of the individual resistances, which means the overall resistance increases as more resistors are added in series. This type of connection is commonly used when a higher resistance is needed or when it is necessary to divide voltage across different components[cite: 2].</p>
+
+            <div class="diagram-box">
+                <svg viewBox="0 0 600 240" width="550" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="600" height="240" fill="transparent"/>
+                    <!-- Wires -->
+                    <path d="M 50 180 L 50 70 L 120 70" stroke="#f1f5f9" stroke-width="2.5" fill="none"/>
+                    <!-- Resistor R1 -->
+                    <path d="M 120 70 L 127 60 L 137 80 L 147 60 L 157 80 L 167 60 L 177 80 L 184 70" stroke="#38bdf8" stroke-width="2.5" fill="none"/>
+                    <path d="M 184 70 L 250 70" stroke="#f1f5f9" stroke-width="2.5" fill="none"/>
+                    <!-- Resistor R2 -->
+                    <path d="M 250 70 L 257 60 L 267 80 L 277 60 L 287 80 L 297 60 L 307 80 L 314 70" stroke="#38bdf8" stroke-width="2.5" fill="none"/>
+                    <path d="M 314 70 L 380 70" stroke="#f1f5f9" stroke-width="2.5" fill="none"/>
+                    <!-- Resistor R3 -->
+                    <path d="M 380 70 L 387 60 L 397 80 L 407 60 L 417 80 L 427 60 L 437 80 L 444 70" stroke="#38bdf8" stroke-width="2.5" fill="none"/>
+                    <path d="M 444 70 L 550 70 L 550 180 L 360 180" stroke="#f1f5f9" stroke-width="2.5" fill="none"/>
+                    <path d="M 240 180 L 50 180" stroke="#f1f5f9" stroke-width="2.5" fill="none"/>
+
+                    <!-- Source vT -->
+                    <ellipse cx="300" cy="180" rx="60" ry="25" fill="#1e293b" stroke="#f1f5f9" stroke-width="2"/>
+                    <text x="300" y="186" fill="#f1f5f9" font-size="16" text-anchor="middle">+ &nbsp;&nbsp;&nbsp;&nbsp; −</text>
+                    <text x="300" y="225" fill="#f1f5f9" font-size="16" text-anchor="middle">v_T</text>
+
+                    <!-- Labels -->
+                    <text x="152" y="45" fill="#38bdf8" font-size="16" text-anchor="middle">R₁</text>
+                    <text x="152" y="105" fill="#94a3b8" font-size="14" text-anchor="middle">+ v₁ −</text>
+
+                    <text x="282" y="45" fill="#38bdf8" font-size="16" text-anchor="middle">R₂</text>
+                    <text x="282" y="105" fill="#94a3b8" font-size="14" text-anchor="middle">+ v₂ −</text>
+
+                    <text x="412" y="45" fill="#38bdf8" font-size="16" text-anchor="middle">R₃</text>
+                    <text x="412" y="105" fill="#94a3b8" font-size="14" text-anchor="middle">+ v₃ −</text>
+
+                    <!-- Current arrow -->
+                    <path d="M 65 55 L 105 55" stroke="#4ade80" stroke-width="2" marker-end="url(#arrow)"/>
+                    <text x="85" y="45" fill="#4ade80" font-size="14" text-anchor="middle">i</text>
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1 L 8 5 L 0 9 z" fill="#4ade80" />
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+
+            <p>The total equivalent resistance, the circuit current and the voltage across each resistor can be calculated using the following[cite: 2]:</p>
+            <div class="formula-box">
+                \[ R_T = R_1 + R_2 + R_3 \]
+                \[ v_T = v_1 + v_2 + v_3 \]
+                \[ i_1 = i_2 = i_3 = i \]
+                \[ i = \frac{v_T}{R_T} = \frac{v_T}{R_1 + R_2 + R_3} \]
+                \[ v_1 = i R_1 = v_T \frac{R_1}{R_1 + R_2 + R_3} \]
+                \[ v_2 = i R_2 = v_T \frac{R_2}{R_1 + R_2 + R_3} \]
+                \[ v_3 = i R_3 = v_T \frac{R_3}{R_1 + R_2 + R_3} \]
+            </div>
+        </section>
+
+        <!-- Section 2.2 -->
+        <section>
+            <h2>2.2 Resistors in Parallel</h2>
+            <p>When resistors are connected in parallel, they are linked across the same two points so that each resistor has the same voltage across it. In this arrangement, the total current is divided among the parallel branches, while the overall resistance becomes less than the smallest individual resistor[cite: 2].</p>
+
+            <div class="diagram-box">
+                <svg viewBox="0 0 600 240" width="550" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Top and bottom main rails -->
+                    <line x1="80" y1="40" x2="520" y2="40" stroke="#f1f5f9" stroke-width="2.5"/>
+                    <line x1="80" y1="200" x2="520" y2="200" stroke="#f1f5f9" stroke-width="2.5"/>
+
+                    <!-- Source branch -->
+                    <line x1="80" y1="40" x2="80" y2="90" stroke="#f1f5f9" stroke-width="2.5"/>
+                    <circle cx="80" cy="120" r="30" fill="#1e293b" stroke="#f1f5f9" stroke-width="2"/>
+                    <text x="80" y="127" fill="#f1f5f9" font-size="20" text-anchor="middle">±</text>
+                    <text x="35" y="125" fill="#f1f5f9" font-size="16">v_T</text>
+                    <line x1="80" y1="150" x2="80" y2="200" stroke="#f1f5f9" stroke-width="2.5"/>
+
+                    <!-- Branch R1 -->
+                    <line x1="220" y1="40" x2="220" y2="95" stroke="#f1f5f9" stroke-width="2.5"/>
+                    <path d="M 220 95 L 210 102 L 230 112 L 210 122 L 230 132 L 210 142 L 220 149" stroke="#38bdf8" stroke-width="2.5" fill="none"/>
+                    <line x1="220" y1="149" x2="220" y2="200" stroke="#f1f5f9" stroke-width="2.5"/>
+                    <text x="245" y="125" fill="#38bdf8" font-size="16">R₁</text>
+
+                    <!-- Branch R2 -->
+                    <line x1="360" y1="40" x2="360" y2="95" stroke="#f1f5f9" stroke-width="2.5"/>
+                    <path d="M 360 95 L 350 102 L 370 112 L 350 122 L 370 132 L 350 142 L 360 149" stroke="#38bdf8" stroke-width="2.5" fill="none"/>
+                    <line x1="360" y1="149" x2="360" y2="200" stroke="#f1f5f9" stroke-width="2.5"/>
+                    <text x="385" y="125" fill="#38bdf8" font-size="16">R₂</text>
+
+                    <!-- Branch R3 -->
+                    <line x1="500" y1="40" x2="500" y2="95" stroke="#f1f5f9" stroke-width="2.5"/>
+                    <path d="M 500 95 L 490 102 L 510 112 L 490 122 L 510 132 L 490 142 L 500 149" stroke="#38bdf8" stroke-width="2.5" fill="none"/>
+                    <line x1="500" y1="149" x2="500" y2="200" stroke="#f1f5f9" stroke-width="2.5"/>
+                    <text x="525" y="125" fill="#38bdf8" font-size="16">R₃</text>
+                </svg>
+            </div>
+
+            <p>The total equivalent resistance, the circuit current and the current through each resistor can be calculated using the following[cite: 2]:</p>
+            <div class="formula-box">
+                \[ \frac{1}{R_T} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} \]
+                \[ i_T = i_1 + i_2 + i_3 \]
+                \[ v_T = v_1 = v_2 = v_3 \]
+            </div>
+        </section>
+
+        <!-- Section 2.3 -->
+        <section>
+            <h2>2.3 The Voltage-Divider and Current-Divider Circuits</h2>
+            <h3>Voltage Division</h3>
+            <p>A voltage divider is a simple circuit that uses two or more resistors connected in series to produce a fraction of the input voltage. The input voltage is applied across the entire series, and the output voltage is taken across one of the resistors[cite: 2].</p>
+            <div class="formula-box">
+                \[ v_1 = v_T \frac{R_1}{R_1 + R_2} \]
+                \[ v_2 = v_T \frac{R_2}{R_1 + R_2} \]
+            </div>
+
+            <h3>Current Division</h3>
+            <p>A current divider is a circuit that distributes an input current into two or more parallel branches. For two parallel resistors, the current through each branch is given by[cite: 2]:</p>
+            <div class="formula-box">
+                \[ i_1 = i_T \frac{R_2}{R_1 + R_2} \]
+                \[ i_2 = i_T \frac{R_1}{R_1 + R_2} \]
+            </div>
+
+            <!-- Example 2.1 -->
+            <div class="example-box">
+                <div class="example-title">Example 2.1</div>
+                <p>For the following circuit, find the total current and the current \(i_x\)[cite: 2]:</p>
+
+                <div class="diagram-box">
+                    <svg viewBox="0 0 550 200" width="500" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="50" y1="80" x2="130" y2="80" stroke="#f1f5f9" stroke-width="2"/>
+                        <!-- 15 ohm -->
+                        <path d="M 130 80 L 135 73 L 145 87 L 155 73 L 165 87 L 175 73 L 180 80" stroke="#38bdf8" stroke-width="2" fill="none"/>
+                        <line x1="180" y1="80" x2="250" y2="80" stroke="#f1f5f9" stroke-width="2"/>
+                        <!-- 15 ohm -->
+                        <path d="M 250 80 L 255 73 L 265 87 L 275 73 L 285 87 L 295 73 L 300 80" stroke="#38bdf8" stroke-width="2" fill="none"/>
+                        <line x1="300" y1="80" x2="370" y2="80" stroke="#f1f5f9" stroke-width="2"/>
+                        <!-- 15 ohm -->
+                        <path d="M 370 80 L 375 73 L 385 87 L 395 73 L 405 87 L 415 73 L 420 80" stroke="#38bdf8" stroke-width="2" fill="none"/>
+                        <line x1="420" y1="80" x2="500" y2="80" stroke="#f1f5f9" stroke-width="2"/>
+
+                        <!-- Upper loop -->
+                        <path d="M 230 80 L 230 35 L 440 35 L 440 80" stroke="#f1f5f9" stroke-width="2" fill="none"/>
+                        <!-- Lower loop -->
+                        <path d="M 110 80 L 110 125 L 310 125 L 310 80" stroke="#f1f5f9" stroke-width="2" fill="none"/>
+
+                        <!-- Source bottom wire -->
+                        <path d="M 50 80 L 50 170 L 240 170" stroke="#f1f5f9" stroke-width="2" fill="none"/>
+                        <path d="M 320 170 L 500 170 L 500 80" stroke="#f1f5f9" stroke-width="2" fill="none"/>
+                        <ellipse cx="280" cy="170" rx="40" ry="18" fill="#1e293b" stroke="#f1f5f9" stroke-width="2"/>
+                        <text x="280" y="175" fill="#f1f5f9" font-size="14" text-anchor="middle">+ &nbsp; −</text>
+                        <text x="280" y="200" fill="#94a3b8" font-size="12" text-anchor="middle">300 volt</text>
+
+                        <text x="155" y="60" fill="#38bdf8" font-size="12" text-anchor="middle">15 Ω</text>
+                        <text x="275" y="60" fill="#38bdf8" font-size="12" text-anchor="middle">15 Ω</text>
+                        <text x="395" y="60" fill="#38bdf8" font-size="12" text-anchor="middle">15 Ω</text>
+                    </svg>
+                </div>
+
+                <div class="solution-title">Solution:</div>
+                <p>Since the three resistors are linked across the same two points, each resistor has the same voltage of 300 V across it[cite: 2]:</p>
+                \[ R_T = \frac{15}{3} = 5\ \Omega \]
+                \[ i_T = \frac{300}{5} = 60\text{ A} \]
+                <p>Current through each branch = \(\frac{300}{15} = 20\text{ A}\)[cite: 2]. By applying KCL at the node, we find[cite: 2]:</p>
+                \[ i_x = 20 + 20 = 40\text{ A} \]
+            </div>
+
+            <!-- Example 2.2 -->
+            <div class="example-box">
+                <div class="example-title">Example 2.2</div>
+                <p>For the circuit shown, given that \(R_{ab} = 9\ \Omega\), find the value of \(R\)[cite: 2].</p>
+                <div class="solution-title">Solution Summary:</div>
+                <p>1. The current through the \(30\ \Omega\) resistor is zero due to the presence of a short circuit across it[cite: 2].<br>
+                2. Resistors \(24\ \Omega\) and \(8\ \Omega\) are in parallel: \(24 \parallel 8 = \frac{24 \times 8}{24 + 8} = 6\ \Omega\)[cite: 2].<br>
+                3. Then \(6\ \Omega\) is in series with \(4\ \Omega\): \(6 + 4 = 10\ \Omega\)[cite: 2].<br>
+                4. Total resistance \(R_{ab} = 5 + (12 \parallel 10 \parallel R) = 9\ \Omega \implies (12 \parallel 10 \parallel R) = 4\ \Omega\)[cite: 2]:</p>
+                \[ \frac{1}{R} + \frac{1}{12} + \frac{1}{10} = \frac{1}{4} \implies R = 15\ \Omega \]
+            </div>
+
+            <!-- Example 2.3 -->
+            <div class="example-box">
+                <div class="example-title">Example 2.3</div>
+                <p>If \(v_{ab} = 1260\text{ V}\), obtain the equivalent resistance and the current \(i_x\)[cite: 2].</p>
+                <div class="solution-title">Solution Steps:</div>
+                <p>
+                - \(10\ \Omega + 8\ \Omega = 18\ \Omega\) and \(10\ \Omega + 5\ \Omega = 15\ \Omega\)[cite: 2].<br>
+                - Parallel pairs: \(10 \parallel 15 = 6\ \Omega\) and \(18 \parallel 36 = 12\ \Omega\)[cite: 2].<br>
+                - Series combination: \(6 + 18 = 24\ \Omega\)[cite: 2].<br>
+                - Parallel: \(12 \parallel 24 = 8\ \Omega\)[cite: 2].<br>
+                - Total circuit resistance: \(R_T = 6 + 8 = 14\ \Omega\)[cite: 2].<br>
+                - Total current: \(I_T = \frac{1260}{14} = 90\text{ A}\)[cite: 2].
+                </p>
+                <p>Using Current Division step-by-step through branches[cite: 2]:</p>
+                \[ i_x = i_4 + i_6 = 12\text{ A} + 20\text{ A} = 32\text{ A} \]
+            </div>
+        </section>
+
+        <!-- Section 2.4 -->
+        <section>
+            <h2>2.4 Star and Delta Connections</h2>
+            
+            <h3>Resistor Connection in Star (Y)</h3>
+            <p>In a star (Y) connection, three resistors meet at a single common neutral point[cite: 2]. The transformation from Star to Delta is given by[cite: 2]:</p>
+            <div class="formula-box">
+                \[ R_{12} = R_1 + R_2 + \frac{R_1 R_2}{R_3} \]
+                \[ R_{13} = R_1 + R_3 + \frac{R_1 R_3}{R_2} \]
+                \[ R_{23} = R_2 + R_3 + \frac{R_2 R_3}{R_1} \]
+            </div>
+
+            <h3>Resistor Connection in Delta (\(\Delta\))</h3>
+            <p>In a delta connection, three resistors form a closed loop[cite: 2]. The transformation from Delta to Star is given by[cite: 2]:</p>
+            <div class="formula-box">
+                \[ R_1 = \frac{R_{12} R_{13}}{R_{12} + R_{13} + R_{23}} \]
+                \[ R_2 = \frac{R_{12} R_{23}}{R_{12} + R_{13} + R_{23}} \]
+                \[ R_3 = \frac{R_{13} R_{23}}{R_{12} + R_{13} + R_{23}} \]
+            </div>
+
+            <!-- Example 2.4 -->
+            <div class="example-box">
+                <div class="example-title">Example 2.4</div>
+                <p>Using Star-Delta transformation to find the total current of the bridge circuit with a 360 V source[cite: 2]:</p>
+                <div class="solution-title">Solution:</div>
+                <p>Transforming delta resistors (\(R_{12}=30\ \Omega\), \(R_{23}=20\ \Omega\), \(R_{31}=50\ \Omega\)) to equivalent star network[cite: 2]:</p>
+                \[ R_1 = \frac{30 \times 50}{30 + 50 + 20} = 15\ \Omega \]
+                \[ R_2 = \frac{30 \times 20}{30 + 50 + 20} = 6\ \Omega \]
+                \[ R_3 = \frac{50 \times 20}{30 + 50 + 20} = 10\ \Omega \]
+                <p>Combining the resulting branches[cite: 2]:</p>
+                \[ (15 + 15) \parallel (6 + 54) = 30 \parallel 60 = 20\ \Omega \]
+                \[ R_T = 10 + 20 = 30\ \Omega \]
+                \[ I_T = \frac{360}{30} = 12\text{ A} \]
+            </div>
+
+            <!-- Example 2.5 -->
+            <div class="example-box">
+                <div class="example-title">Example 2.5</div>
+                <p>Perform Star-Delta transformation to find total resistance between nodes A and B[cite: 2]:</p>
+                <div class="solution-title">Solution:</div>
+                <p>Convert the delta loop (\(10\ \Omega, 20\ \Omega, 20\ \Omega\)) to star[cite: 2]:</p>
+                \[ R_1 = \frac{10 \times 20}{10 + 20 + 20} = 4\ \Omega,\quad R_2 = 4\ \Omega,\quad R_3 = 8\ \Omega \]
+                <p>Series and parallel reductions[cite: 2]:</p>
+                \[ (20 + 4) \parallel (10 + 8) = 24 \parallel 18 \approx 10.29\ \Omega \]
+                \[ R_{branch} = 10.29 + 4 = 14.29\ \Omega \]
+                \[ R_T = 10 \parallel 14.29 = 5.88\ \Omega \]
+            </div>
+        </section>
+    </div>
+</body>
+</html>
